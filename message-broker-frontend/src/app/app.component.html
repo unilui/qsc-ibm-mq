@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+@if (authService.currentUserSig() == null) {
+    <app-login></app-login>
+}
+@if (authService.currentUserSig()) {
+    <router-outlet></router-outlet>
+}
