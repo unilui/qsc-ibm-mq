@@ -1,0 +1,15 @@
+services:
+  frontend:
+    container_name: controler_frontend
+    build: ./message-broker-frontend
+    image: queue-service-controller:v1
+    ports:
+      - 80:80
+    expose:
+      - 80
+    networks:
+      - internalnet
+
+networks:
+  internalnet:
+    driver: bridge
