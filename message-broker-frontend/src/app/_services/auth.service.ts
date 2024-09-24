@@ -1,5 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, OAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, user } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, OAuthProvider, signInWithEmailAndPassword, signInWithRedirect, signOut, updateProfile, user } from '@angular/fire/auth';
 import { Observable, from } from 'rxjs';
 import { UserInterface } from '../_models/user.interface';
 
@@ -23,7 +23,7 @@ export class AuthService {
 
   socialLogin(): Observable<void> {
     const provider = new OAuthProvider('microsoft.com');
-    const promise = signInWithPopup(
+    const promise = signInWithRedirect(
       this.firebaseAuth, 
       provider
     ).then(() => {});

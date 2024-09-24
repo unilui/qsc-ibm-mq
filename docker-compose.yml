@@ -5,6 +5,7 @@ services:
     image: queue-service-controller:v1
     ports:
       - 80:80
+      - 443:443
     expose:
       - 80
     networks:
