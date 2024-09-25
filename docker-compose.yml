@@ -10,6 +10,18 @@ services:
       - 80
     networks:
       - internalnet
+  ibmmq:
+    image: ibmcom/mq:latest
+    container_name: ibm-mq
+    environment:
+      LICENSE: accept
+      MQ_QMGR_NAME: ${MY_MQ_QMGR}  # Queue manager name
+      MQ_APP_PASSWORD: ${MY_MQ_PASSWORD}  # Password for 'admin' user
+    ports:
+      - "1414:1414"  # MQ communication port
+      - "9443:9443"  # MQ Web Console/REST API port
+    networks:
+      - internalnet
 
 networks:
   internalnet:
