@@ -1,6 +1,6 @@
 services:
   frontend:
-    container_name: controler_frontend
+    container_name: controler-frontend
     build:
       context: ./message-broker-frontend
       dockerfile: Dockerfile
@@ -12,13 +12,21 @@ services:
         FIREBASE_MESSAGING_SENDER_ID: ${FIREBASE_MESSAGING_SENDER_ID}
         FIREBASE_APP_ID: ${FIREBASE_APP_ID}
     image: queue-service-controller:v1
-    environment:
-      FIREBASE_API_KEY: ${FIREBASE_API_KEY}
     ports:
       - 80:80
       - 443:443
     expose:
       - 80
+      - 443
+    networks:
+      - internalnet
+  backend-api:
+    container_name: controler-api
+    build: ./message-broker-api
+    image: queue-service-api:v1
+    expose:
+      - 8443
+      - 8080
     networks:
       - internalnet
   ibmmq:
