@@ -11,6 +11,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoginFormComponent } from './_components/login-form/login-form.component';
 import { VisualBrandComponent } from './_components/visual/visual-brand/visual-brand.component';
 import { HomeComponent } from './pages/home/home.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './_services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,8 +26,14 @@ import { HomeComponent } from './pages/home/home.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true // Ensure that multiple interceptors can be used
+    },
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth())
   ],
