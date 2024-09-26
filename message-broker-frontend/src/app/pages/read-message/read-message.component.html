@@ -1,6 +1,6 @@
 <div class="card shadow p-4" style="min-width: 450px; width: 100%;">
-    <h4 class="text-center mb-4">Send Message to Queue</h4>
-    <form (ngSubmit)="sendMessage()" #messageForm="ngForm">
+    <h4 class="text-center mb-4">Read Message from Queue</h4>
+    <form (ngSubmit)="readMessage()" #messageForm="ngForm">
     <div class="form-group mb-3">
         <label for="queue" class="form-label">Queue</label>
         <input
@@ -22,15 +22,15 @@
         [(ngModel)]="message"
         rows="5"
         required
+        disabled="true"
         ></textarea>
     </div>
     <button
         type="submit"
         class="btn w-100"
-        [disabled]="!messageForm.form.valid"
         style="background-color: #fe6202; border-color: #fe6202; color: white;"
     >
-        Send
+        Read
     </button>
     </form>
 </div>

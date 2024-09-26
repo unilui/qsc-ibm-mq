@@ -1,6 +1,8 @@
-@if (authService.currentUserSig() == null) {
-    <app-login></app-login>
-}
 @if (authService.currentUserSig()) {
+    <app-navbar></app-navbar>
+    <app-app-base-ui><router-outlet></router-outlet></app-app-base-ui>
+    <app-footer></app-footer>
+}
+@if (authService.currentUserSig() == null) {
     <router-outlet></router-outlet>
 }

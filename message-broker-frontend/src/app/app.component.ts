@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,8 @@ export class AppComponent implements OnInit{
   authService = inject(AuthService)
   title = 'message-broker-frontend';
 
+  constructor (private router: Router) {}
+
   ngOnInit(): void {
     this.authService.user$.subscribe((user: any) => {
       if (user) {
@@ -18,6 +21,7 @@ export class AppComponent implements OnInit{
           username: user.displayName
         })
       } else {
+        this.router.navigate(['login']);
         this.authService.currentUserSig.set(null);
       }
     })
