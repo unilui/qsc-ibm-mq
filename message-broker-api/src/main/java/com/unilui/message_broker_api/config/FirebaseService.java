@@ -15,7 +15,7 @@ import java.io.IOException;
 @Configuration
 public class FirebaseService {
 
-    @Value("classpath:FirebaseAccountKey.json")
+    @Value("classpath:FirebaseServiceKey.json")
     Resource resourceFile;
 
     @Bean

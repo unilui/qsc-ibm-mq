@@ -3,11 +3,13 @@ FROM maven:3.9.6-amazoncorretto-17 AS build
 WORKDIR /app
 
 # Copy the pom.xml and download dependencies
-COPY pom.xml .
+COPY ./message-broker-api/pom.xml .
 RUN mvn dependency:go-offline -B
 
 # Copy the rest of the project files
-COPY src ./src
+COPY ./message-broker-api/src ./src
+
+COPY FirebaseServiceKey.json ./src/main/resources/
 
 # Build the application
 RUN mvn clean package -DskipTests

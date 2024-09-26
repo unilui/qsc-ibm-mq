@@ -22,7 +22,9 @@ services:
       - internalnet
   backend-api:
     container_name: controler-api
-    build: ./message-broker-api
+    build: 
+      context: .
+      dockerfile: ./message-broker-api/Dockerfile
     image: queue-service-api:v1
     expose:
       - 8443
